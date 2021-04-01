@@ -14,11 +14,40 @@
 
                     <label> <input id="tarefa" type="text"> </label>
                     <button id="btn-adicionar">adicionar</button>
+                    <div id="tarefas-box"></div>
+                </div>
                     
-            
-                   
-                </div>  
             </header>
+
+
+
+            <script>
+                let tarefas = []
+        
+                function adicionarTarefas(){
+                    let tarefa = document.getElementById("tarefa").value;
+                    tarefas.push(tarefa)
+    
+                    tarefasListaHTML="<ul>";
+                    for(let i = 0;i < tarefas.length; i++){
+                        tarefasListaHTML += "<li>" + tarefas[i] + "</li>";
+                    }
+                    
+                    document.getElementById("tarefas-box").innerHTML = tarefasListaHTML;
+                    document.getElementById("tarefa").value = "";
+                }
+                    
+                //botao    
+                let botao = document.getElementById("btn-adicionar");
+                botao.addEventListener('click', adicionarTarefas)
+    
+    
+    
+                    
+    
+                    
+                
+            </script>
 
 
 
