@@ -27,14 +27,43 @@
 
             <script>
                 let tarefas = []
+
+                function removerTarefa(indice){
+                    tarefas.splice(indice, 1)
+                    
+                    tarefasListaHTML="<ul>";
+                    for(let i = 0;i < tarefas.length; i++){
+                        tarefasListaHTML += "<li>" + tarefas[i].titulo + " - "+ tarefas[i].dataCriacao + "<button class='apagar' onClick=removerTarefa("+i+")>apagar</button> </li>";
+                    }
+                    
+                    tarefasListaHTML += "</ul>"
+
+                    document.getElementById("tarefas-box").innerHTML = tarefasListaHTML;
+                    document.getElementById("tarefa").value = "";
+                }
+
+
+                function dataAtualFormatada(){
+                var data = new Date(),
+                dia  = data.getDate().toString(),
+                diaF = (dia.length == 1) ? '0'+dia : dia,
+                mes  = (data.getMonth()+1).toString(), //+1 pois no getMonth Janeiro começa com zero.
+                mesF = (mes.length == 1) ? '0'+mes : mes,
+                anoF = data.getFullYear();
+                return diaF+"/"+mesF+"/"+anoF;
+}
+
         
                 function adicionarTarefas(){
-                    let tarefa = document.getElementById("tarefa").value;
+                    let tarefa ={                        
+                        titulo : document.getElementById("tarefa").value,
+                        dataCriacao: dataAtualFormatada()
+                 }
                     tarefas.push(tarefa)
     
                     tarefasListaHTML="<ul>";
                     for(let i = 0;i < tarefas.length; i++){
-                        tarefasListaHTML += "<li>" + tarefas[i] + "</li>";
+                        tarefasListaHTML += "<li>" + tarefas[i].titulo + " - "+ tarefas[i].dataCriacao + "<button class='apagar' onClick=removerTarefa("+i+")>apagar</button> </li>";
                     }
                     
                     tarefasListaHTML += "</ul>"
