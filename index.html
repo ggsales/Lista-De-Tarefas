@@ -12,7 +12,13 @@
             <div class="bg-modal" id="modal">
                 <div class="modal">
                     <span class="close" onclick="fecharModal()">&times;</span>
-                    <h1 class="titulo-modal">Insira o novo nome da tarefa:</h1>
+                    <h1 id="titulo-modal">Editar tarefa:</h1>
+                    <label><input id="push-modal" placeholder="insira o novo nome da tarefa" type="text"></label>
+                    <div id="btn-modal">
+                        <button id="btn-cancelar" onclick="fecharModal()">Cancelar</button>
+                        <button id="btn-salvar">Salvar alterações</button>
+
+                    </div>
                 
                 </div>
             </div>  
