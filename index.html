@@ -16,7 +16,8 @@
                     <label><input id="push-modal" placeholder="insira o novo nome da tarefa" type="text"></label>
                     <div id="btn-modal">
                         <button id="btn-cancelar" onclick="fecharModal()">Cancelar</button>
-                        <button id="btn-salvar">Salvar alterações</button>
+                        <button id="btn-salvar" onclick="atualizaNome()">Salvar alterações</button>
+                        
 
                     </div>
                 
@@ -40,7 +41,35 @@
 
 
             <script>
-                function abrirModal(){
+                let tarefas = []
+                let editarTarefa = null
+
+                function atualizaNome(){
+                    let atualizaTarefa =  document.getElementById("push-modal").value
+                    
+                    if(atualizaTarefa.length==0){
+                        return;
+                    } 
+                    tarefas[editarTarefa].titulo=atualizaTarefa
+                   
+                   
+                    tarefasListaHTML="<ul>";
+                    for(let i = 0;i < tarefas.length; i++){
+                        tarefasListaHTML += "<li>" + tarefas[i].titulo + " - "+ tarefas[i].dataCriacao + "<button class='apagar' onClick=removerTarefa("+i+")>apagar</button> <button class='openModal' onClick=abrirModal("+i+")>editar</button> </li>";
+                    }
+                    
+                    tarefasListaHTML += "</ul>"
+
+                    document.getElementById("tarefas-box").innerHTML = tarefasListaHTML;
+                    document.getElementById("push-modal").value = "";
+                    fecharModal()
+                    
+                }
+
+
+
+                function abrirModal(indice){
+                    editarTarefa= indice 
                     document.getElementById("modal").style.display = "block";
                 }
 
@@ -53,7 +82,7 @@
 
 
 
-                let tarefas = []
+               
 
                 function removerTarefa(indice){
                     tarefas.splice(indice, 1)
