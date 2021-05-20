@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="./css/style.css">
-
+    
         <title>Lista de Tarefas</title>
     </head>
     <body>
@@ -17,150 +17,23 @@
                     <div id="btn-modal">
                         <button id="btn-cancelar" onclick="fecharModal()">Cancelar</button>
                         <button id="btn-salvar" onclick="atualizaNome()">Salvar alterações</button>
-                        
-
-                    </div>
-                
+                    </div>                
                 </div>
             </div>  
 
-
             <div id="app">
-
                 <header id="header">
-
-                    
                     <h1>Lista de Tarefas</h1>
                     <label> <input id="tarefa" type="text"> </label>
                     <button id="btn-adicionar">adicionar</button>
-
                 </header>
 
                 <main id="tarefas-box"></main>
             </div>
 
-
-            <script>
-                let tarefas = []
-                let editarTarefa = null
-
-                function atualizaNome(){
-                    let atualizaTarefa =  document.getElementById("push-modal").value
-                    
-                    if(atualizaTarefa.length==0){
-                        return;
-                    } 
-                    tarefas[editarTarefa].titulo=atualizaTarefa
-                   
-                   
-                    tarefasListaHTML="<ul>";
-                    for(let i = 0;i < tarefas.length; i++){
-                        tarefasListaHTML += "<li>" + tarefas[i].titulo + " - "+ tarefas[i].dataCriacao + "<button class='apagar' onClick=removerTarefa("+i+")>apagar</button> <button class='openModal' onClick=abrirModal("+i+")>editar</button> </li>";
-                    }
-                    
-                    tarefasListaHTML += "</ul>"
-
-                    document.getElementById("tarefas-box").innerHTML = tarefasListaHTML;
-                    document.getElementById("push-modal").value = "";
-                    fecharModal()
-                    
-                }
-
-
-
-                function abrirModal(indice){
-                    editarTarefa= indice 
-                    document.getElementById("modal").style.display = "block";
-                }
-
-                function fecharModal(){
-                    document.getElementById("modal").style.display = "none";  
-                }
-
-
-
-
-
-
-               
-
-                function removerTarefa(indice){
-                    tarefas.splice(indice, 1)
-                    
-                    tarefasListaHTML="<ul>";
-                    for(let i = 0;i < tarefas.length; i++){
-                        tarefasListaHTML += "<li>" + tarefas[i].titulo + " - "+ tarefas[i].dataCriacao + "<button class='apagar' onClick=removerTarefa("+i+")>apagar</button> <button class='openModal' onClick=abrirModal("+i+")>editar</button> </li>";
-                    }
-                    
-                    tarefasListaHTML += "</ul>"
-
-                    document.getElementById("tarefas-box").innerHTML = tarefasListaHTML;
-                    document.getElementById("tarefa").value = "";
-                }
-
-
-                function dataAtualFormatada(){
-                var data = new Date(),
-                dia  = data.getDate().toString(),
-                diaF = (dia.length == 1) ? '0'+dia : dia,
-                mes  = (data.getMonth()+1).toString(), //+1 pois no getMonth Janeiro começa com zero.
-                mesF = (mes.length == 1) ? '0'+mes : mes,
-                anoF = data.getFullYear();
-                return diaF+"/"+mesF+"/"+anoF;
-            }
-
-        
-                function adicionarTarefas(){
-                    let tituloTarefa =  document.getElementById("tarefa").value
-                    if(tituloTarefa.length==0){
-                        alert("insira uma tarefa")
-                        return;
-                    }
-                    let tarefa ={                        
-                        titulo :tituloTarefa,
-                        dataCriacao: dataAtualFormatada()
-                    }  
-                    tarefas.push(tarefa)
-    
-                    tarefasListaHTML="<ul>";
-                    for(let i = 0;i < tarefas.length; i++){
-                        tarefasListaHTML += "<li>" + tarefas[i].titulo + " - "+ tarefas[i].dataCriacao +
-                        "<button class='apagar' onClick=removerTarefa("+i+")>apagar</button>  <button class='openModal' onClick=abrirModal("+i+")>editar</button> </li>";
-                    }
-                    
-                    tarefasListaHTML += "</ul>"
-
-                    document.getElementById("tarefas-box").innerHTML = tarefasListaHTML;
-                    document.getElementById("tarefa").value = "";
-                }
-                    
-                //botao    
-                let botao = document.getElementById("btn-adicionar");
-                botao.addEventListener('click', adicionarTarefas)
-    
-    
-    
-                    
-    
-                    
-                
-            </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            <script src="scripts.js"></script>
     </body>
 </html>
+
+
+
